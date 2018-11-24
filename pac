@@ -90,6 +90,7 @@ function help()
     paclc       List commands provided by installed packages                      pacman -Ql <packages> | grep -E 'bin/.+'
     pacls       List installed packages and sizes                                 See detailed description
     pacai       Install packages from AUR                                         yay -S
+    pacas       Search packages in AUR                                            yay --aur -Ss
 EOT
 }
 
@@ -138,4 +139,5 @@ function pacls()
 }
 
 alias pacai="yay -S"
+alias pacas="yay --aur -Ss"
 
