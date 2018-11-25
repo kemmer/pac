@@ -67,7 +67,7 @@ function pac()
 
 function help()
 {
-  if [[ $2 != "quiet" ]]; then
+  if [[ $1 != "quiet" ]]; then
     echo "pac - Arch Linux PACMAN & YAY aliases for ease everyday use of common tasks"
     echo
     echo "Available commands"
