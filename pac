@@ -73,25 +73,37 @@ function help()
     echo "Available commands"
   fi
 
-  cat <<EOT
-    pacs        Search packages                                                   pacman -Ss
-    paci        Install packages or groups                                        sudo pacman -S
-    pacu        Update package databases                                          sudo pacman -Syy
-    pacup       Update package databases and upgrade packages                     sudo pacman -Syyu
-    pacr        Remove packages                                                   sudo pacman -Rns
-    pacrc       Remove packages, cascading dependencies                           sudo pacman -Rnsc
-    pacd        Description of a package                                          pacman -Si
-    pacdl       Description of a package, local database                          pacman -Qi
-    pacl        List installed packages and versions                              pacman -Q
-    paclf       List installed packages and corresponding files                   pacman -Ql
-    paclg       List installed packages in groups                                 pacman -Qg
-    paclgg      List groups or packages in groups                                 pacman -Sg
-    pacla       List installed packages and versions from AUR (foreign packages)  pacman -Qem
-    paclc       List commands provided by installed packages                      pacman -Ql <packages> | grep -E 'bin/.+'
-    pacls       List installed packages and sizes                                 See detailed description
-    pacai       Install packages from AUR                                         yay -S
-    pacas       Search packages in AUR                                            yay --aur -Ss
-EOT
+  short_descriptions=(
+    "pacs      ;Search packages                                                           ;pacman -Ss"
+    "paci      ;Install packages or groups                                                ;sudo pacman -S"
+    "pacu      ;Update package databases                                                  ;sudo pacman -Syy"
+    "pacup     ;Update package databases and upgrade packages                             ;sudo pacman -Syyu"
+    "pacr      ;Remove packages                                                           ;sudo pacman -Rns"
+    "pacrc     ;Remove packages, cascading dependencies                                   ;sudo pacman -Rnsc"
+    "pacd      ;Description of a package                                                  ;pacman -Si"
+    "pacdl     ;Description of a package, local database                                  ;pacman -Qi"
+    "pacl      ;List installed packages and versions                                      ;pacman -Q"
+    "paclf     ;List installed packages and corresponding files                           ;pacman -Ql"
+    "paclg     ;List installed packages in groups                                         ;pacman -Qg"
+    "paclgg    ;List groups or packages in groups                                         ;pacman -Sg"
+    "pacla     ;List installed packages and versions from AUR (foreign packages)          ;pacman -Qem"
+    "paclc     ;List commands provided by installed packages                              ;pacman -Ql <packages> | grep -E 'bin/.+'"
+    "pacls     ;List installed packages and sizes                                         ;See detailed description"
+    ";;"
+    "pacas     ;Search packages in AUR                                                    ;yay --aur -Ss"
+    "pacai     ;Install packages from AUR                                                 ;yay --aur -S"
+    "pacaup    ;Update package databases and upgrade packages from AUR                    ;yay --aur --timeupdate -Syyu"
+    "pacad     ;Description of an AUR package                                             ;yay --aur -Si"
+    "pacal     ;List installed packages and versions from AUR (foreign packages)          ;Same as pacla"
+  )
+
+  for l in "${short_descriptions[@]}"; do
+    line=(${l//;/ })
+    cmd="${line[0]}"
+    desc="${line[1]}"
+    orig="${line[2]}"
+    printf "    %s %s %s\n" $cmd $desc $orig
+  done
 }
 
 function pacexplain()
@@ -138,6 +150,8 @@ function pacls()
   pacman -Qi $@ | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 
-alias pacai="yay -S"
 alias pacas="yay --aur -Ss"
-
+alias pacai="yay -S"
+alias pacaup="yay --aur --timeupdate -Syyu"
+alias pacad="yay --aur -Si"
+alias pacal="pacman -Qem"
