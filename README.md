@@ -1,5 +1,5 @@
 # pac
-Arch Linux PACMAN &amp; YAY aliases for ease everyday use of common tasks
+Arch Linux `pacman` &amp; `yay` mnemonic helpers for ease everyday use of common tasks
 
 ## Available commands
 ```
@@ -26,9 +26,16 @@ pacad           Description of an AUR package
 pacal           List installed packages and versions from AUR (foreign packages)
 ```
 
+## Highlights
+- Easy installation and no third-party code dependencies
+- Small commands
+- Use of mnemonic approach for fast memorizing and intuitive usage
+- Most commands taken from reliable sources (Arch Linux forums and wiki)
+- `pacman` and `yay` commands exposed in help docs
+
 ## Installation
-- Install yay (https://github.com/Jguer/yay)
-- Clone this repo in some folder in your homedir and source it in your .bashrc or .zshrc
+- Install yay (https://github.com/Jguer/yay) if you pretend to use AUR
+- Clone this repo in some folder in your homedir and source it in your `.bashrc` or `.zshrc`
 
 ### Example for bash
 ```
@@ -37,7 +44,7 @@ echo "source ~/.archlinux-pac/pac" >> ~/.bashrc
 ```
 
 ## Usage
-Every command prefix with `pac`. The commands tries to be simple. Documentation is available with `pac help`. For
+Every command prefix with `pac`. Documentation is available with `pac help`. For
 specific help and detailed description, use `pac explain <command>`.
 
 
