@@ -98,11 +98,8 @@ function help()
   )
 
   for l in "${short_descriptions[@]}"; do
-    line=(${l//;/ })
-    cmd="${line[0]}"
-    desc="${line[1]}"
-    orig="${line[2]}"
-    printf "    %s %s %s\n" $cmd $desc $orig
+    l_clean="${l//;/ }"
+    printf "    %s\n" $l_clean
   done
 }
 
