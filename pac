@@ -99,7 +99,7 @@ function help()
 
   for l in "${short_descriptions[@]}"; do
     l_clean="${l//;/ }"
-    printf "    %s\n" $l_clean
+    printf "    %s\n" "$l_clean"
   done
 }
 
