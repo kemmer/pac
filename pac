@@ -80,6 +80,7 @@ function help()
     "pacup     ;Update package databases and upgrade packages                             ;sudo pacman -Syyu"
     "pacr      ;Remove packages                                                           ;sudo pacman -Rns"
     "pacrc     ;Remove packages, cascading dependencies                                   ;sudo pacman -Rnsc"
+    "pacro     ;Remove orphan packages                                                    ;sudo pacman -Rns $(pacman -Qtdq)"
     "pacd      ;Description of a package                                                  ;pacman -Si"
     "pacdl     ;Description of a package, local database                                  ;pacman -Qi"
     "pacl      ;List installed packages and versions                                      ;pacman -Q"
@@ -129,6 +130,15 @@ alias pacu="sudo pacman -Syy"
 alias pacup="sudo pacman -Syyu"
 alias pacr="sudo pacman -Rns"
 alias pacrc="sudo pacman -Rnsc"
+
+function pacro()
+{
+  orphans=$(pacman -Qtdq)
+  if [[ $orphans ]]; then
+    sudo pacman -Rns $(pacman -Qtdq)
+  fi
+}
+
 alias pacd="pacman -Si"
 alias pacdl="pacman -Qi"
 alias pacl="pacman -Q"
